@@ -54,7 +54,7 @@ class GetOrder:
         login = LoginUser()
         response = login.login_user()
         ingridients = {
-            "ingredients": ["60d3b41abdacab0026a732c6", "609646e4dc916e00276b2870", "609646e4dc916e00276b2871"]
+            "ingredients": 'iuytre'
         }
 
         order = requests.post(Urls.URL_HTTPS + Urls.URL_ORDER, json=ingridients,

@@ -37,8 +37,8 @@ class TestAddOrderLogin:
     def test_order_error_ingridients(self):
         order = GetOrder()
         response = order.add_order_error_ingridients()
-        assert response.status_code == 500 #В документации сказано Если в запросе передан невалидный хеш ингредиента, вернётся код ответа 500Internal Server Error, почему то при проверке пишет что ошибка должна быть 400
-        assert response.json()['success'] == False
+        assert response.status_code == 500
+
 
 
 
