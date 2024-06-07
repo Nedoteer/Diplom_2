@@ -1,7 +1,8 @@
 import allure
 import requests
 
-from data.add_user import AddUser
+from data.data_for_test import DataForTest
+from metods.add_user import AddUser
 from Urls import Urls
 
 
@@ -16,7 +17,7 @@ class TestAddUser:
                    "password": "password",
                    "name": "Username"
                    }
-        response = requests.post(Urls.URL_HTTPS + Urls.URL_REGISTER, json=payload)
+        response = requests.post(Urls.url_https + Urls.url_register, json=payload)
         assert response.json()['success'] == True
         assert response.status_code == 200
 
@@ -28,18 +29,15 @@ class TestAddUser:
                    "name": "Username"
                    }
         copy = payload
-        requests.post(Urls.URL_HTTPS + Urls.URL_REGISTER, json=payload)
-        response = requests.post(Urls.URL_HTTPS + Urls.URL_REGISTER, json=copy)
+        requests.post(Urls.url_https + Urls.url_register, json=payload)
+        response = requests.post(Urls.url_https + Urls.url_register, json=copy)
         assert response.json()['success'] == False
         assert response.status_code == 403
 
     @allure.title('Создание пользователя')
     @allure.description('Создание пользователя и не заполнить email')
     def test_add_user_without_email(self):
-        payload = {
-                   "password": "password",
-                   "name": "Username"
-                   }
-        response = requests.post(Urls.URL_HTTPS + Urls.URL_REGISTER, json=payload)
+        payload = DataForTest.name_password
+        response = requests.post(Urls.url_https + Urls.url_register, json=payload)
         assert response.status_code == 403
         assert response.json()['message'] == 'Email, password and name are required fields'

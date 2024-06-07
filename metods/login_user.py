@@ -2,12 +2,12 @@ import allure
 import requests
 
 from Urls import Urls
-from data.add_user import AddUser
+from metods.add_user import AddUser
 
 
 class LoginUser:
 
-    @allure.title('Данные для входа под существующим пользователем')
+    @allure.step('Данные для входа под существующим пользователем')
     def login_user(self):
 
         us = AddUser.generate_random_string(5)
@@ -19,16 +19,16 @@ class LoginUser:
             "email": f'{us}@yopmail.com',
             "password": "password"
         }
-        requests.post(Urls.URL_HTTPS + Urls.URL_REGISTER, json=payload)
-        response = requests.post(Urls.URL_HTTPS + Urls.URL_AUTH_LOGIN, json=login)
+        requests.post(Urls.url_https + Urls.url_register, json=payload)
+        response = requests.post(Urls.url_https + Urls.url_auth_login, json=login)
         return response
 
-    @allure.title('Данные для входа под не существующим пользователем')
+    @allure.step('Данные для входа под не существующим пользователем')
     def login_error(self):
 
         login = {
             "email": f'{AddUser.generate_random_string(5)}@yopmail.com',
             "password": "password"
         }
-        response = requests.post(Urls.URL_HTTPS + Urls.URL_AUTH_LOGIN, json=login)
+        response = requests.post(Urls.url_https + Urls.url_auth_login, json=login)
         return response

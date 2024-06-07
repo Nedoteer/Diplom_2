@@ -1,6 +1,6 @@
 import allure
 
-from data.get_orders import GetOrder
+from metods.get_orders import GetOrder
 
 
 class TestAddOrderLogin:

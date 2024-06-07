@@ -1,6 +1,6 @@
 import allure
 
-from data.login_user import LoginUser
+from metods.login_user import LoginUser
 
 
 class TestLoginUser:
